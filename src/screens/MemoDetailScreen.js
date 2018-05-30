@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 
 
 class MemoListScreen extends React.Component {
@@ -46,11 +46,7 @@ class MemoListScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>メモリスト画面</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('MemoDetail')}
-        />
+        <Text>メモ詳細画面</Text>
         <TextInput
           style={{height: 40}}
           placeholder="メモのタイトル"
