@@ -35,6 +35,7 @@ export default class App extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        owner: 1,
         title: this.state.memo_title,
         text: this.state.memo_text,
       }),
