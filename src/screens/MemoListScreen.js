@@ -47,9 +47,6 @@ class MemoListScreen extends React.Component {
     return (
       
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Memo一覧</Text>
-        </View>
         <TextInput
           style={{height: 40}}
           placeholder="メモのタイトル"
@@ -79,21 +76,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  header: {
-    marginTop: 30,
-    padding: 10,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    alignItems: 'center',
-    backgroundColor: '#c6e6fa',
-  },
-  body: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
   },
 });
 
