@@ -7,8 +7,8 @@ import MemoDetailScreen from './src/screens/MemoDetailScreen';
 
 
 const App = createStackNavigator({
-  MemoDetail: { screen: MemoDetailScreen },
   Home: { screen: MemoListScreen },
+  MemoDetail: { screen: MemoDetailScreen },
 },{
   navigationOptions: {
     headerTitle: 'DRF MEMO APP',

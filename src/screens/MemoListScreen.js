@@ -47,10 +47,6 @@ class MemoListScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>メモリスト画面</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('MemoDetail')}
-        />
         <TextInput
           style={{height: 40}}
           placeholder="メモのタイトル"
@@ -69,7 +65,11 @@ class MemoListScreen extends React.Component {
         </TouchableOpacity>
         <FlatList
           data={this.state.dataSource}
-          renderItem={({item}) => <Text>{item.id}{item.title}</Text>}
+          renderItem={({item}) =>
+            <TouchableOpacity onPress={ () => {this.props.navigation.navigate('MemoDetail', { memo: item}); }}>
+              <Text>{item.id}{item.title}</Text>
+            </TouchableOpacity>
+          }
         />
       </View>
     );

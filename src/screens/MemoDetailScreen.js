@@ -6,39 +6,40 @@ class MemoListScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      memo: [],
-      memo_id:211,
+      memo: {}
     };
   }
 
-  componentDidMount() {
-      
-    return fetch(`http://localhost:8000/api/memos/${this.state.memo_id}/`)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          memo: [responseJson][0],
-        }, function(){
-          });
+  componentWillMount() {
+    const { params } = this.props.navigation.state;
+    this.setState({ memo: params.memo })
+  }
+
+  delete_memo(){
+    return fetch(`http://localhost:8000/api/memos/${this.state.memo.id}`, {
+      method: 'DELETE',
       })
-      .catch((error) =>{
-        console.error(error);
-      });
   }
 
   render() {
+    const { memo } = this.state;
     return (
       <View style={styles.container}>
         <Text>メモ詳細画面</Text>
         <Button
-          title="Go to Lists"
+          title="メモリスト画面へ"
           onPress={() => this.props.navigation.navigate('Home')}
         />
-        <Text>ID：{ this.state.memo.id }</Text>
-        <Text>タイトル：{ this.state.memo.title }</Text>
-        <Text>テキスト：{ this.state.memo.text }</Text>
-        <Text>作成日：{ this.state.memo.created_at }</Text>
-        <Text>更新日：{ this.state.memo.updated_at }</Text>
+        <Text>ID：{ memo.id }</Text>
+        <Text>タイトル：{ memo.title }</Text>
+        <Text>テキスト：{ memo.text }</Text>
+        <Text>作成日：{ memo.created_at }</Text>
+        <Text>更新日：{ memo.updated_at }</Text>
+    
+        <TouchableOpacity onPress={ this.delete_memo.bind(this) }>
+          <Text>メモを削除</Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
