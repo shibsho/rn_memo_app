@@ -7,14 +7,14 @@ import MemoDetailScreen from './src/screens/MemoDetailScreen';
 
 
 const App = createStackNavigator({
-  Home: { screen: MemoListScreen },
   MemoDetail: { screen: MemoDetailScreen },
+  Home: { screen: MemoListScreen },
 },{
   navigationOptions: {
     headerTitle: 'DRF MEMO APP',
     headerStyle: { backgroundColor: '#265366' },
     headerTitleStyle: { color: '#FFF' },
-    headerTintColor: '#483911',
+    headerTintColor: '#AAA',
     headerBackTitle: null,
   }
 }
