@@ -44,30 +44,17 @@ class MemoListScreen extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text>メモリスト画面</Text>
-        <TextInput
-          style={{height: 40}}
-          placeholder="メモのタイトル"
-          onChangeText={(memo_title) => this.setState({memo_title})}
-        />
-        <TextInput
-          style={{height: 40}}
-          placeholder="メモのテキスト"
-          onChangeText={(memo_text) => this.setState({memo_text})}
-        />
-        <Text>タイトル：{this.state.memo_title}</Text>
-        <Text>テキスト：{this.state.memo_text}</Text>
-      
-        <TouchableOpacity onPress={ this.post_memo.bind(this) }>
-          <Text>メモを保存</Text>
+        <TouchableOpacity onPress={ () => { navigate('MemoCreate') } }>
+          <Text>+</Text>
         </TouchableOpacity>
-
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) =>
-            <TouchableOpacity onPress={ () => {this.props.navigation.navigate('MemoDetail', { memo: item}); }}>
+            <TouchableOpacity onPress={ () => { navigate('MemoDetail', { memo: item}); }}>
               <Text>{item.id}{item.title}</Text>
             </TouchableOpacity>
           }
