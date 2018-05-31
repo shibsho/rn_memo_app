@@ -60,9 +60,10 @@ class MemoListScreen extends React.Component {
         <Text>タイトル：{this.state.memo_title}</Text>
         <Text>テキスト：{this.state.memo_text}</Text>
       
-        <TouchableOpacity onPress={this.post_memo.bind(this)}>
+        <TouchableOpacity onPress={ this.post_memo.bind(this) }>
           <Text>メモを保存</Text>
         </TouchableOpacity>
+
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) =>

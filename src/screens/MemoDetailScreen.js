@@ -16,9 +16,12 @@ class MemoListScreen extends React.Component {
   }
 
   delete_memo(){
-    return fetch(`http://localhost:8000/api/memos/${this.state.memo.id}`, {
+    fetch(`http://localhost:8000/api/memos/${this.state.memo.id}`, {
       method: 'DELETE',
-      })
+    })
+    .then(()=>{
+      this.props.navigation.goBack();
+    })
   }
 
   render() {
