@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
 
 
-class LoginScreen extends React.Component {
+class SignUpScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,8 +11,8 @@ class LoginScreen extends React.Component {
     };
   }
 
-  login(){
-    fetch('', {
+  SignUpPost(){
+    fetch('http://localhost:8000/api/users/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -40,15 +40,10 @@ class LoginScreen extends React.Component {
           style={{height: 40}}
           placeholder="パスワード"
           onChangeText={(password) => this.setState({password})}
-          secureTextEntry={true}
         />
      
-        <TouchableOpacity onPress={this.login.bind(this)}>
-          <Text>ログインする</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={ () => {this.props.navigation.navigate('SignUp')} }>
-          <Text>登録画面へ</Text>
+        <TouchableOpacity onPress={this.SignUpPost.bind(this)}>
+          <Text>ユーザー登録する</Text>
         </TouchableOpacity>
       </View>
     );
@@ -62,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignUpScreen;
