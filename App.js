@@ -6,6 +6,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen';
 import MemoCreateScreen from './src/screens/MemoCreateScreen';
+import MemoEditScreen from './src/screens/MemoEditScreen';
 
 
 const App = createStackNavigator({
@@ -13,6 +14,7 @@ const App = createStackNavigator({
   Home: { screen: MemoListScreen },
   MemoCreate: { screen: MemoCreateScreen },
   MemoDetail: { screen: MemoDetailScreen },
+  MemoEdit: { screen: MemoEditScreen },
 },{
   navigationOptions: {
     headerTitle: 'DRF MEMO APP',
