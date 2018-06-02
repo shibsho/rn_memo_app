@@ -40,6 +40,7 @@ class SignUpScreen extends React.Component {
           style={{height: 40}}
           placeholder="パスワード"
           onChangeText={(password) => this.setState({password})}
+          secureTextEntry={true}
         />
      
         <TouchableOpacity onPress={this.SignUpPost.bind(this)}>

@@ -5,14 +5,15 @@ import { FlatList, StyleSheet, Text, TextInput, View, TouchableOpacity, Button }
 class MemoEditScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      memo: {},
-    };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { params } = this.props.navigation.state;
-    this.setState({ memo: params.memo })
+    this.setState({ 
+      memo: params.memo,
+      title: params.memo.title,
+      text: params.memo.text,
+    })
   }
 
   edit_memo(){
@@ -34,31 +35,29 @@ class MemoEditScreen extends React.Component {
   }
 
   render() {
-    const { memo } = this.state;
+    const { memo } = this.state
     return (
       <View style={styles.container}>
         <Text>メモ編集画面</Text>
         <Button
           title="メモリスト画面へ"
-          onPress={() => this.props.navigation.navigate('Home')}
+          onPress={ () => this.props.navigation.navigate('Home') }
         />
         <Text>ID：{ memo.id }</Text>
+        
         <TextInput
           style={{height: 40}}
           value= { memo.title }
-          onChangeText={(title) => this.setState({title})}
+          onChangeText={ (title) => this.setState({title}) }
         />
-        <Text>{ memo.title }</Text>
-        <Text>{ this.state.title }</Text>
+
         <TextInput
           style={{height: 40}}
           value= { memo.text }
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={ (text) => this.setState({text}) }
         />
-        <Text>{ memo.title }</Text>
 
-
-        <TouchableOpacity onPress={this.edit_memo.bind(this)}>
+        <TouchableOpacity onPress={ this.edit_memo.bind(this) }>
           <Text>編集を保存</Text>
         </TouchableOpacity>
 
