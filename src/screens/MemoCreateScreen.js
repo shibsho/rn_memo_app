@@ -25,14 +25,18 @@ class MemoCreateScreen extends React.Component {
       }),
     })
     .then(()=>{
-      this.props.navigation.navigate('Home')
+      this.props.navigation.state.params.refresh();
+      this.props.navigation.goBack()
     });
   }
 
+
   render() {
     return (
+
       <View style={styles.container}>
         <Text>メモ作成画面</Text>
+
         <TextInput
           style={{height: 40}}
           placeholder="メモのタイトル"
@@ -47,6 +51,7 @@ class MemoCreateScreen extends React.Component {
         <TouchableOpacity onPress={ this.post_memo.bind(this) }>
           <Text>メモを保存</Text>
         </TouchableOpacity>
+
       </View>
     );
   }

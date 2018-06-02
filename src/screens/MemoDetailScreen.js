@@ -15,11 +15,17 @@ class MemoDetailScreen extends React.Component {
     this.setState({ memo: params.memo })
   }
 
+  refresh(){
+    const { params } = this.props.navigation.state;
+    this.setState({ memo:params.memo })
+  } 
+
   delete_memo(){
     fetch(`http://localhost:8000/api/memos/${this.state.memo.id}`, {
       method: 'DELETE',
     })
     .then(()=>{
+      this.props.navigation.state.params.refresh();
       this.props.navigation.goBack();
     })
   }
@@ -39,7 +45,7 @@ class MemoDetailScreen extends React.Component {
         <Text>作成日：{ memo.created_at }</Text>
         <Text>更新日：{ memo.updated_at }</Text>
 
-        <TouchableOpacity onPress={ () => this.props.navigation.navigate('MemoEdit', { memo: memo}) }>
+        <TouchableOpacity onPress={ () => this.props.navigation.navigate('MemoEdit', { memo: memo, refresh: this.props.navigation.state.params.refresh }) }>
           <Text>メモを編集</Text>
         </TouchableOpacity>
     

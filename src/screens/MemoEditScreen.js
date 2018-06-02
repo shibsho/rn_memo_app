@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, View, TouchableOpacity, Button, AsyncStorage } from 'react-native';
 
 
 class MemoEditScreen extends React.Component {
@@ -30,15 +30,19 @@ class MemoEditScreen extends React.Component {
       }),
     })
     .then(()=>{
-      this.props.navigation.goBack();
+      this.props.navigation.state.params.refresh();
+      this.props.navigation.navigate('Home');
     })
   }
 
   render() {
+
     const { memo } = this.state
     return (
       <View style={styles.container}>
+        <Text>{ this.state.test }</Text>
         <Text>メモ編集画面</Text>
+
         <Button
           title="メモリスト画面へ"
           onPress={ () => this.props.navigation.navigate('Home') }
