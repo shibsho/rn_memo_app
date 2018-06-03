@@ -27,7 +27,10 @@ class MemoCreateScreen extends React.Component {
     .then(()=>{
       this.props.navigation.state.params.refresh();
       this.props.navigation.goBack()
-    });
+    })
+    .catch((error) =>{
+        console.error(error);
+      });
   }
 
 
@@ -35,8 +38,7 @@ class MemoCreateScreen extends React.Component {
     return (
 
       <View style={styles.container}>
-        <Text>メモ作成画面</Text>
-
+        <Text>メモ作成画面</Text>;
         <TextInput
           style={{height: 40}}
           placeholder="メモのタイトル"

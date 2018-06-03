@@ -29,6 +29,10 @@ class MemoEditScreen extends React.Component {
         text: this.state.text,
       }),
     })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log([responseJson])
+      })
     .then(()=>{
       this.props.navigation.state.params.refresh();
       this.props.navigation.navigate('Home');
