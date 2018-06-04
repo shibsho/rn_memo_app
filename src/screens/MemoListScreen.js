@@ -11,8 +11,16 @@ class MemoListScreen extends React.Component {
     };
   }
 
+
   componentWillMount() {
-    return fetch('http://localhost:8000/api/memos/')
+
+    const token = this.props.navigation.state.params.token;
+
+    return fetch('http://localhost:8000/api/users/',{
+      headers:{
+        Authorization: `Token ${token}`
+      }
+    })
       .then((response) => response.json())
       .then((responseJson) => {
 

@@ -8,11 +8,13 @@ class LoginScreen extends React.Component {
     this.state = {
       username: "",
       password: "",
+      token: "",
+      error: "",
     };
   }
 
   login(){
-    fetch('', {
+    fetch('http://localhost:8000/obtain-auth-token/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -23,27 +25,46 @@ class LoginScreen extends React.Component {
         password: this.state.password,
       }),
     })
-    
-    this.props.navigation.navigate('Home')
+    .then((response) => {
+      responseJson = response.json();
+      return responseJson
+    })
+    .then((responseJson) => {
+      if (responseJson.token === undefined){
+        this.setState({
+          error: "ユーザー名かパスワードが不正です。"
+        })
+      }else{
+        this.setState({
+          token: responseJson.token
+        })
+        this.props.navigation.navigate('Home', { token: this.state.token })
+      }
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text>ログイン</Text>
+        <Text>{ this.state.error }</Text>
+        
         <TextInput
           style={{height: 40}}
           placeholder="ユーザー名"
           onChangeText={(username) => this.setState({username})}
+          autoCapitalize="none"
         />
+
         <TextInput
           style={{height: 40}}
           placeholder="パスワード"
           onChangeText={(password) => this.setState({password})}
           secureTextEntry={true}
+          autoCapitalize="none"
         />
      
-        <TouchableOpacity onPress={this.login.bind(this)}>
+        <TouchableOpacity onPress={ this.login.bind(this) }>
           <Text>ログインする</Text>
         </TouchableOpacity>
 
