@@ -16,16 +16,16 @@ class MemoListScreen extends React.Component {
 
     const token = this.props.navigation.state.params.token;
 
-    return fetch('http://localhost:8000/api/users/',{
+    return fetch('http://localhost:8000/api/users/1/',{
       headers:{
         Authorization: `Token ${token}`
       }
     })
       .then((response) => response.json())
       .then((responseJson) => {
-
+        console.log(responseJson)
         this.setState({
-          dataSource: responseJson,
+          dataSource: responseJson.memos,
         }, function(){
 
         });
@@ -50,14 +50,13 @@ class MemoListScreen extends React.Component {
           <Text>+</Text>
         </TouchableOpacity>
         <FlatList
-          data={this.state.dataSource}
+          data={ this.state.dataSource }
           renderItem={({item}) =>
             <TouchableOpacity onPress={ () => { navigate('MemoDetail', { memo: item, refresh: this.componentWillMount.bind(this) }); }}>
-              <Text>{item.id}{item.title}</Text>
+              <Text>{item.title}</Text>
             </TouchableOpacity>
           }
         />
-
       </View>
     );
   }

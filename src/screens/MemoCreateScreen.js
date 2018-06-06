@@ -19,7 +19,7 @@ class MemoCreateScreen extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        owner: 1,
+        owner: 2,
         title: this.state.memo_title,
         text: this.state.memo_text,
       }),
