@@ -17,7 +17,8 @@ const App = createStackNavigator({
   MemoCreate: { screen: MemoCreateScreen },
   MemoDetail: { screen: MemoDetailScreen },
   MemoEdit: { screen: MemoEditScreen },
-},{
+},
+{
   navigationOptions: {
     headerTitle: 'DRF MEMO APP',
     headerStyle: { backgroundColor: '#265366' },
@@ -25,6 +26,9 @@ const App = createStackNavigator({
     headerTintColor: '#AAA',
     headerBackTitle: null,
   }
+},
+{
+  initialRouteName: 'Login',
 }
 );
 

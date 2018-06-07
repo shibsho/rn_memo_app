@@ -36,9 +36,10 @@ class LoginScreen extends React.Component {
         })
       }else{
         this.setState({
-          token: responseJson.token
+          token: responseJson.token,
+          user_id: responseJson.id
         })
-        this.props.navigation.navigate('Home', { token: this.state.token })
+        this.props.navigation.navigate('Home', { token: this.state.token, user_id: this.state.user_id })
       }
     })
   }
@@ -48,14 +49,12 @@ class LoginScreen extends React.Component {
       <View style={styles.container}>
         <Text>ログイン</Text>
         <Text>{ this.state.error }</Text>
-        
         <TextInput
           style={{height: 40}}
           placeholder="ユーザー名"
           onChangeText={(username) => this.setState({username})}
           autoCapitalize="none"
         />
-
         <TextInput
           style={{height: 40}}
           placeholder="パスワード"

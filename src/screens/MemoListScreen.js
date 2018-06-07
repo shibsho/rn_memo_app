@@ -15,8 +15,10 @@ class MemoListScreen extends React.Component {
   componentWillMount() {
 
     const token = this.props.navigation.state.params.token;
+    const user_id = this.props.navigation.state.params.user_id;
+    this.setState({ user_id: user_id })
 
-    return fetch('http://localhost:8000/api/users/1/',{
+    return fetch(`http://localhost:8000/api/users/${user_id}/`,{
       headers:{
         Authorization: `Token ${token}`
       }
@@ -26,6 +28,7 @@ class MemoListScreen extends React.Component {
         console.log(responseJson)
         this.setState({
           dataSource: responseJson.memos,
+          username: responseJson.username,
         }, function(){
 
         });
@@ -43,10 +46,10 @@ class MemoListScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-
+        <Text>{ this.state.username }としてログイン中</Text>
         <Text>メモリスト画面</Text>
 
-        <TouchableOpacity onPress={ () => { navigate('MemoCreate', { refresh: this.componentWillMount.bind(this)}) } }>
+        <TouchableOpacity onPress={ () => { navigate('MemoCreate', { user_id: this.state.user_id, refresh: this.componentWillMount.bind(this)}) } }>
           <Text>+</Text>
         </TouchableOpacity>
         <FlatList

@@ -11,6 +11,11 @@ class MemoCreateScreen extends React.Component {
     };
   }
 
+  componentWillMount() {
+    const user_id = this.props.navigation.state.params.user_id;
+    this.setState({ user_id: user_id });
+  }
+
   post_memo(){
     fetch('http://localhost:8000/api/memos/', {
       method: 'POST',
@@ -19,7 +24,7 @@ class MemoCreateScreen extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        owner: 2,
+        owner: this.state.user_id,
         title: this.state.memo_title,
         text: this.state.memo_text,
       }),
