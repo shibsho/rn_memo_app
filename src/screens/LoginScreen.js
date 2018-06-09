@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
-
+import { StackActions, NavigationActions } from 'react-navigation';
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -35,13 +35,15 @@ class LoginScreen extends React.Component {
           error: "ユーザー名かパスワードが不正です。"
         })
       }else{
-        this.setState({
-          token: responseJson.token,
-          user_id: responseJson.id
-        })
-        this.props.navigation.navigate('Home', { token: this.state.token, user_id: this.state.user_id })
+                const resetAction = StackActions.reset({
+                  index: 0,
+                  actions: [
+                    NavigationActions.navigate({ routeName: 'Home', params: { token: responseJson.token, user_id: responseJson.id }}),
+                  ],
+                });
+                this.props.navigation.dispatch(resetAction);
       }
-    })
+    });
   }
 
   render() {
