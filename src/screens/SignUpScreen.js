@@ -30,7 +30,9 @@ class SignUpScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>ログイン</Text>
+        <TouchableOpacity onPress={ () => {this.props.navigation.navigate('Login')} }>
+          <Text>ログイン画面へ</Text>
+        </TouchableOpacity>
         <TextInput
           style={{height: 40}}
           placeholder="ユーザー名"
