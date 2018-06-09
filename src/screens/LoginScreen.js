@@ -35,13 +35,13 @@ class LoginScreen extends React.Component {
           error: "ユーザー名かパスワードが不正です。"
         })
       }else{
-                const resetAction = StackActions.reset({
-                  index: 0,
-                  actions: [
-                    NavigationActions.navigate({ routeName: 'Home', params: { token: responseJson.token, user_id: responseJson.id }}),
-                  ],
-                });
-                this.props.navigation.dispatch(resetAction);
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'Home', params: { token: responseJson.token, user_id: responseJson.id }}),
+          ],
+        });
+        this.props.navigation.dispatch(resetAction);
       }
     });
   }
